@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const database = require('../config/database');
 
 class DetalleOrden {
     constructor(detalle) {
@@ -10,7 +10,7 @@ class DetalleOrden {
 
     static registrar(nuevoDetalle, result) {
         const sql = 'INSERT INTO detalles_orden SET ?';
-        db.query(sql, nuevoDetalle, (err, res) => {
+        database.query(sql, nuevoDetalle, (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -21,7 +21,7 @@ class DetalleOrden {
 
     static obtenerPorIdOrden(idorden, result) {
         const sql = 'SELECT * FROM detalles_orden WHERE idorden = ?';
-        db.query(sql, [idorden], (err, res) => {
+        database.query(sql, [idorden], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -32,7 +32,7 @@ class DetalleOrden {
 
     static actualizar(id, detalle, result) {
         const sql = 'UPDATE detalles_orden SET idproducto = ?, cantidad = ?, total = ? WHERE iddetalle = ?';
-        db.query(sql, [detalle.idproducto, detalle.cantidad, detalle.total, id], (err, res) => {
+        database.query(sql, [detalle.idproducto, detalle.cantidad, detalle.total, id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -47,7 +47,7 @@ class DetalleOrden {
 
     static eliminar(id, result) {
         const sql = 'DELETE FROM detalles_orden WHERE iddetalle = ?';
-        db.query(sql, [id], (err, res) => {
+        database.query(sql, [id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;

@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const database = require('../config/database');
 
 class Producto {
     constructor(producto) {
@@ -11,7 +11,7 @@ class Producto {
 
     static registrar(nuevoProducto, result) {
         const sql = 'INSERT INTO productos SET ?';
-        db.query(sql, nuevoProducto, (err, res) => {
+        database.query(sql, nuevoProducto, (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -22,7 +22,7 @@ class Producto {
 
     static obtenerPorId(id, result) {
         const sql = 'SELECT * FROM productos WHERE idproducto = ?';
-        db.query(sql, [id], (err, res) => {
+        database.query(sql, [id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -33,7 +33,7 @@ class Producto {
 
     static actualizar(id, producto, result) {
         const sql = 'UPDATE productos SET precio = ?, stock = ? WHERE idproducto = ?';
-        db.query(sql, [producto.precio, producto.stock,  id], (err, res) => {
+        database.query(sql, [producto.precio, producto.stock,  id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -48,7 +48,7 @@ class Producto {
 
     static eliminar(id, result) {
         const sql = 'DELETE FROM productos WHERE idproducto = ?';
-        db.query(sql, [id], (err, res) => {
+        database.query(sql, [id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;

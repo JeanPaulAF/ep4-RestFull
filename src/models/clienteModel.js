@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const database = require('../config/database');
 
 class Cliente {
     constructor(cliente) {
@@ -10,7 +10,7 @@ class Cliente {
 
     static registrar(nuevoCliente, result) {
         const sql = 'INSERT INTO clientes SET ?';
-        db.query(sql, nuevoCliente, (err, res) => {
+        database.query(sql, nuevoCliente, (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -21,7 +21,7 @@ class Cliente {
 
     static obtenerPorId(id, result) {
         const sql = 'SELECT * FROM clientes WHERE idcliente = ?';
-        db.query(sql, [id], (err, res) => {
+        database.query(sql, [id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -32,7 +32,7 @@ class Cliente {
 
     static actualizar(id, cliente, result) {
         const sql = 'UPDATE clientes SET telefono = ?, direccion = ? WHERE idcliente = ?';
-        db.query(sql, [cliente.telefono, cliente.direccion, id], (err, res) => {
+        database.query(sql, [cliente.telefono, cliente.direccion, id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -43,7 +43,7 @@ class Cliente {
 
     static eliminar(id, result) {
         const sql = 'DELETE FROM clientes WHERE idcliente = ?';
-        db.query(sql, [id], (err, res) => {
+        database.query(sql, [id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;

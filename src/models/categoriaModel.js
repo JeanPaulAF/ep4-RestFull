@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const database = require('../config/database');
 
 class Categoria {
     constructor(categoria) {
@@ -8,7 +8,7 @@ class Categoria {
 
     static registrar(nuevaCategoria, result) {
         const sql = 'INSERT INTO categorias SET ?';
-        db.query(sql, nuevaCategoria, (err, res) => {
+        database.query(sql, nuevaCategoria, (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -19,7 +19,7 @@ class Categoria {
 
     static obtenerCategorias(result) {
         const sql = 'SELECT * FROM categorias';
-        db.query(sql, (err, res) => {
+        database.query(sql, (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -30,7 +30,7 @@ class Categoria {
 
     static actualizar(id, categoria, result) {
         const sql = 'UPDATE categorias SET nombre = ?, descripcion = ? WHERE idcategoria = ?';
-        db.query(sql, [categoria.nombre, categoria.descripcion, id], (err, res) => {
+        database.query(sql, [categoria.nombre, categoria.descripcion, id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;
@@ -45,7 +45,7 @@ class Categoria {
 
     static eliminar(id, result) {
         const sql = 'DELETE FROM categorias WHERE idcategoria = ?';
-        db.query(sql, [id], (err, res) => {
+        database.query(sql, [id], (err, res) => {
             if (err) {
                 result(err, null);
                 return;

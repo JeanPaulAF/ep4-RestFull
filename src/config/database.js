@@ -1,13 +1,13 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
-const db = mysql.createConnection({
+const database = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'admin',  
     database: 'techstore'  
 });
 
-db.connect((err) => {
+database.connect((err) => {
     if (err) {
         console.error('Error al conectar a la base de datos:', err);
         process.exit(1);
@@ -16,4 +16,4 @@ db.connect((err) => {
   
 });
 
-module.exports = db;
+module.exports = database;
